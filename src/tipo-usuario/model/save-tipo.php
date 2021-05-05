@@ -1,7 +1,7 @@
 <?php
 
     // Obter conexão com o banco de dados
-    include('../../conexao/conn.php')
+    include('../../conexao/conn.php');
 
     // Obter os dados enviados do formulário via REQUEST
     $requestData = $_REQUEST;
