@@ -1,8 +1,9 @@
 <?php
+
     // Realizar o include da conexão com o banco de dados
     include('../../conexao/conn.php');
-    
-    // Obter o request vindo do anco de dados
+
+    // Obter os request vindo do banco de dados
     $requestData = $_REQUEST;
 
     // Obter as colunas vindas do request
@@ -15,14 +16,13 @@
     $resultado = $pdo->query($sql);
     $qtdeLinhas = $resultado->rowCount();
 
-    // Verificação se existe algum filtro a ser pesquisado
+    // Verificação se existe algums filtro a ser pesquisado
     $filtro = $requestData['search']['value'];
     if(!empty($filtro)){
         // Montar a lógica para executar o filtro
-        // Aqui também determina quais colunas farão parte da minha pesquisa
+        // Aqui também determinamos quais colunas farão parte da nossa pesquisa
         $sql .= " AND (IDTIPO_USUARIO LIKE '%$filtro%' ";
-        $sql .= " OR DESCRICAO LIKE '%$filtro%') ";
-
+        $sql .= " OR DESCRICAO LIKE '%$filtro%') " ;
     }
 
     // Obter o total de dados filtrados
@@ -30,23 +30,23 @@
     $totalFiltrados = $resultado->rowCount();
 
     // Criar a lógica para ordenação de dados em tela
-    $colunaOrdem = $requestData['order'][0]['column']; // Obtendo a posição da coluna a ser ordenada 
-    $ordem = $colunas[$colunaOrdem]['data']; // Obtendo o nome da coluna que será organizada
-    $direcao = $requestData['order'][0]['dir']; // Obtendo a direção que será ordenado
+    $colunaOrdem = $requestData['order'][0]['column']; //Obtendo a posição da coluna a ser ordenada
+    $ordem = $colunas[$colunaOrdem]['data']; //Obtendo o nome da coluna que será organizada
+    $direcao = $requestData['order'][0]['dir']; //Obtermos a direção que será ordenado
 
     // Criar os limites de dados que irão aparecer na tela
-    $inicio = $requestData['start']; // Obtendo o início do limite
-    $tamanho = $requestData['length']; // Obtendo o tamanho do limite
+    $inicio = $requestData['start']; //Obtendo o início do limite
+    $tamanho = $requestData['length']; //Obter o tamanho do limite
 
-    // Criar a query de ordenação e limite de dados
-    $sql .= " ORDER BY $ordem $direcao LIMIT $inicio, $tamanho";
+    // Criar a query de ordenação e limite da dados
+    $sql .= " ORDER BY $ordem $direcao LIMIT $inicio, $tamanho ";
     $resultado = $pdo->query($sql);
     $dados = array();
     while($row = $resultado->fetch(PDO::FETCH_ASSOC)){
         $dados[] = array_map('utf8_encode', $row);
     }
 
-    // Montar o ojeto json de retorno nos padrões do DataTables
+    // Montar o objeto json de retorno nos padrões do DataTables
     $json_data = Array(
         "draw" => intval($requestData['draw']),
         "recordsTotal" => intval($qtdeLinhas),
@@ -54,9 +54,5 @@
         "data" => $dados
     );
 
-    // Retorno o elemento JSON
+    // Retornamos o elemento JSON
     echo json_encode($json_data);
-
-
-    
-
