@@ -19,8 +19,8 @@ $(document).ready(function() {
             assync: true,
             data: IDTIPO_USUARIO,
             url: "src/tipo-usuario/model/view-tipo.php",
-            success: function(dados) {
-                if (dados.tipo == "success") {
+            success: function(dado) {
+                if (dado.tipo == "success") {
                     $('.modal-body').load('src/tipo-usuario/view/form-tipo.html', function() {
                         $('#DESCRICAO').val(dado.dados.DESCRICAO)
                         $('#IDTIPO_USUARIO').val(dado.dados.IDTIPO_USUARIO)
