@@ -6,6 +6,7 @@ $(document).ready(function() {
         let NOME = `NOME=${$(this).val()}`
 
         $('#autores').empty()
+        $('#lista').empty()
 
         if ($(this).val().length >= 3) {
 
@@ -17,8 +18,13 @@ $(document).ready(function() {
                 url: 'src/usuario/model/find-usuario.php',
                 success: function(dados) {
                     for (const dado of dados) {
-                        $('#autores').append(`<input type="text" name="" id="" class="form-control" value="${dado.NOME}" disabled>`)
+                        $('#autores').append(`<input type="text" name="" id="${dado.IDUSUARIO}" class="form-control indicado" value="${dado.NOME}" disabled>`)
                     }
+                    $('.indicado').click(function(e) {
+                        $('#autores').empty()
+                        $('#AUTOR').empty()
+                        $('#lista').append(`<input type="text" name="" id="${dado.IDUSUARIO}" class="form-control indicado" value="${dado.NOME}">`)
+                    })
                 }
             })
 
