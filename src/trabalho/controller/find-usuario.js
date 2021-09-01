@@ -7,7 +7,7 @@ $(document).ready(function() {
 
         $('#autores').empty()
         $('.result-autor').empty()
-        //$('#lista').empty()
+            //$('#lista').empty()
 
         if ($(this).val().length >= 3) {
 
@@ -22,6 +22,7 @@ $(document).ready(function() {
                         $('#autores').append(`<input type="text" name="" id="${dado.IDUSUARIO}" class="form-control" value="${dado.NOME}" disabled>`)
                     }
                     $('.result-autor').click(function(e) {
+                        e.preventDefault()
                         $('#autores').empty()
                         $('#AUTOR').empty()
                         $('.result-autor').append(`<input type="text" name="" id="${dado.IDUSUARIO}" class="form-control" value="${dado.NOME}">`)
