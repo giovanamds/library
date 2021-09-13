@@ -1,3 +1,17 @@
+function selectAuthor() {
+    $('.alert').click(function(e) {
+        e.preventDefault()
+
+        let idElement = $(this).attr('data-id')
+        let nameElement = $(this).attr('data-name')
+
+        $('#result').append(`<input type="text" class="form-control" value="${nameElement}" disabled><input type="hidden" name="USUARIO_IDUSUARIO" id="USUARIO_IDUSUARIO" value="${idElement}" />`)
+
+        $('#' + idElement).hide()
+
+    })
+}
+
 $(document).ready(function() {
 
     $('#AUTOR').keyup(function(e) {
@@ -5,11 +19,10 @@ $(document).ready(function() {
 
         let NOME = `NOME=${$(this).val()}`
 
-        $('#autores').empty()
-
-        fix_user = 0
 
         if ($(this).val().length >= 3) {
+
+            $('#autores').empty()
 
             $.ajax({
                 dataType: 'json',
@@ -18,21 +31,16 @@ $(document).ready(function() {
                 data: NOME,
                 url: 'src/usuario/model/find-usuario.php',
                 success: function(dados) {
-                    $('#autores').empty()
-                    $('#autores-btn').empty()
-                    if (Object.values(dados).length === 0) {
-                        $('#autores').append(`<input type="text" name="" id="" class="form-control" value="Nenhum resultado encontrado" disabled>`)
-                    } else {
-
-                        for (const dado of dados) {
-                            $('#autores').append(`<input type="text" name="" id="" class="form-control" value="${dado.NOME}" disabled></input>`)
-                            $('#autores').append(`<input type="hidden" name="IDUSUARIO" id="IDUSUARIO" value="">`)
-                            $('#autores-btn').append(`<button class="btn btn-dark fix_user" id="${dado.IDUSUARIO}" type="button"><i class="fas fa-user-check"></i></button>`)
-                        }
+                    for (const dado of dados) {
+                        $('#autores').append(`<div class="alert alert-info" id="${dado.IDUSUARIO}" data-id="${dado.IDUSUARIO}" data-name="${dado.NOME}" role="alert">${dado.NOME}</div>`)
                     }
+                    selectAuthor()
                 }
             })
 
+        } else {
+            $('#autores').empty()
         }
+
     })
 })

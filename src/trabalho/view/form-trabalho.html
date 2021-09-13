@@ -1,6 +1,6 @@
 <form id="form-trabalho" enctype="multipart/form-data">
     <div class="form-group">
-        <label>Título do trabalho</label>
+        <label>Título do Trabalho</label>
         <input type="text" name="TITULO" id="TITULO" class="form-control">
     </div>
     <div class="form-group row">
@@ -9,7 +9,7 @@
             <input type="number" name="ANO" id="ANO" class="form-control">
         </div>
         <div class="col-12 col-md-6">
-            <label>Nro. Páginas</label>
+            <label>Número de Páginas</label>
             <input type="number" name="NROPAGINAS" id="NROPAGINAS" class="form-control">
         </div>
     </div>
@@ -27,38 +27,21 @@
             <input type="text" name="COORIENTADOR" id="COORIENTADOR" class="form-control">
         </div>
     </div>
-    <div class="form-group row">
-        <div class="col-10">
-            <input type="text" name="AUTOR" id="AUTOR" class="form-control" placeholder="Digite o nome do autor...">
-        </div>
-        <div class="col-2">
-            <button class="btn btn-primary btn-block btn-find"><i class="fas fa-search"></i> Buscar</button>
-        </div>
+    <div class="form-group">
+        <input type="text" name="AUTOR" id="AUTOR" class="form-control" placeholder="Digite o nome do autor...">
     </div>
 
+    <div class="form-group" id="autores">
 
-    <div class="from-group row">
-        <div class="col-12 mb-3" id="autores">
-        </div>
-        <br><br>
-        <div class="col-2" id="autores-btn">
-        </div>
+        <<<<<<< HEAD=======< div class="row">
+            <div class="col-12">
+                <label>Autor/Autores: </label>
+            </div>
+            >>>>>>> b9a1f2f803858a038bedf2257e4af0938ec5da2a
     </div>
+    <div class="form-group" id="result">
 
-
-    <div class="row">
-        <div class="col-12">
-            <label>Autor/Autores: </label>
-        </div>
     </div>
-
-    <div class="from-group row">
-        <div class="col-12" id="resultAutor">
-        </div>
-        <div class="col-2" id="resultAutor-btn">
-        </div>
-    </div>
-
 
     <div class="form-group">
         <label>Arquivo</label>
@@ -69,5 +52,3 @@
 </form>
 
 <script src="src/trabalho/controller/find-usuario.js"></script>
-<script src="src/trabalho/controller/fix-usuario.js"></script>
-<script src="src/trabalho/controller/up-usuario.js"></script>
