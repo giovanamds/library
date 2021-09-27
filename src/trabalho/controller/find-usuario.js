@@ -2,14 +2,14 @@ function selectAuthor() {
     $('.alert').click(function(e) {
         e.preventDefault()
 
-        let idElement = $(this).attr('id')
-        let nameElement = $(this).attr('data-name')
+        let id = $(this).attr('id')
+        let nome = $(this).attr('data-name')
 
         $('#result').append(`
-        <div type="text" class="alert alert-info">${nameElement}</div>
-        <input type="hidden" name="USUARIO_IDUSUARIO" id="USUARIO_IDUSUARIO" value="${idElement}" />`)
+        <div type="text" class="alert alert-info">${nome}</div>
+        <input type="hidden" name="USUARIO_IDUSUARIO" id="USUARIO_IDUSUARIO" value="${id}" />`)
 
-        $('#' + idElement).hide()
+        $('#' + id).hide()
 
     })
 }
