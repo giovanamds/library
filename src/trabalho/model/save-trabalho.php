@@ -69,20 +69,20 @@
                                 ':f' => utf8_decode($requestData['COORIENTADOR']),
                                 ':g' => $novoNome
                             ));
-                            // Início da busca dos último cadastro efetivado
-                            $sql = $pdo->query("SELECT * FROM TRABALHO ORDER BY IDTRABALHO DESC LIMIT 1");
 
-                            while ($resultado = $sql->fetch(PDO::FETCH_ASSOC)){
+                            // Início da busca dos último cadastro efetivado
+                             $sql = $pdo->query("SELECT * FROM TRABALHO ORDER BY IDTRABALHO DESC LIMIT 1");
+
+                            while($resultado=$sql->fetch(PDO::FETCH_ASSOC)){
                                 $IDTRABALHO = $resultado['IDTRABALHO'];
                             }
 
                             $indice = count(array_filter($requestData['AUTOR']));
-
-                            for($i=0; $i < $indice; $i++){
-                                $stmt = $pdo->prepare('INSERT INTO AUTOR (TRABALHO_IDTRABALHO, USUARIO_IDUSUARIO) VALUES (:a, :b)');
-                                $stmt->execute(array(
+                            for($i=0; $i<$indice; $i++){
+                                $stmt = $pdo -> prepare('INSERT INTO AUTOR (TRABALHO_IDTRABALHO, USUARIO_IDUSUARIO) VALUES (:a, :b)');
+                                $stmt -> execute(array(
                                     ':a' => $IDTRABALHO,
-                                    ':b' => $requestData['AUTOR'][$i]
+                                    ':b' => $requestData['USUARIO_IDUSUARIO'][$i]
                                 ));
                             }
 
