@@ -1,17 +1,16 @@
 function selectAuthor() {
+
     $('.alert').click(function(e) {
         e.preventDefault()
-
         let id = $(this).attr('id')
         let nome = $(this).attr('data-name')
-
         $('#result').append(`
-        <div type="text" class="alert alert-info">${nome}</div>
-        <input type="hidden" name="USUARIO_IDUSUARIO" id="USUARIO_IDUSUARIO" value="${id}" />`)
-
+            <div class="alert alert-primary">${nome}</div>
+            <input type="hidden" name="USUARIO_IDUSUARIO[]" value="${id}" />
+        `)
         $('#' + id).hide()
-
     })
+
 }
 
 $(document).ready(function() {
@@ -20,7 +19,6 @@ $(document).ready(function() {
         e.preventDefault()
 
         let NOME = `NOME=${$(this).val()}`
-
 
         if ($(this).val().length >= 3) {
 
@@ -34,7 +32,7 @@ $(document).ready(function() {
                 url: 'src/usuario/model/find-usuario.php',
                 success: function(dados) {
                     for (const dado of dados) {
-                        $('#autores').append(`<div class="alert alert-secondary" id="${dado.IDUSUARIO}" data-name="${dado.NOME}" role="alert">${dado.NOME}</div>`)
+                        $('#autores').append(`<div id="${dado.IDUSUARIO}" data-name="${dado.NOME}" class="alert alert-secondary">${dado.NOME}</div>`)
                     }
                     selectAuthor()
                 }
